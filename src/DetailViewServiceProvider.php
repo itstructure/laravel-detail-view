@@ -1,0 +1,123 @@
+<?php
+
+namespace Itstructure\DetailView;
+
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use Itstructure\DetailView\Commands\PublishCommand;
+
+/**
+ * Class DetailViewServiceProvider
+ * @package Itstructure\DetailView
+ */
+class DetailViewServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+        $this->registerCommands();
+    }
+
+    public function boot()
+    {
+        // Loading settings
+        $this->loadViews();
+        $this->loadTranslations();
+
+        // Publish settings
+        $this->publishViews();
+        $this->publishTranslations();
+
+        // Directives
+        require_once __DIR__ . '/functions.php';
+
+        Blade::directive('detailView', function ($config) {
+            return "<?php echo detail_view($config); ?>";
+        });
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | COMMAND SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Register commands.
+     * @return void
+     */
+    private function registerCommands(): void
+    {
+        $this->commands(Commands\PublishCommand::class);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | LOADING SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Set directory to load views.
+     * @return void
+     */
+    private function loadViews(): void
+    {
+        $this->loadViewsFrom($this->packagePath('resources/views'), 'detail_view');
+    }
+
+    /**
+     * Set directory to load translations.
+     * @return void
+     */
+    private function loadTranslations(): void
+    {
+        $this->loadTranslationsFrom($this->packagePath('resources/lang'), 'detail_view');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PUBLISH SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Publish views.
+     * @return void
+     */
+    private function publishViews(): void
+    {
+        $this->publishes([
+            $this->packagePath('resources/views') => resource_path('views/vendor/detail_view'),
+        ], 'views');
+    }
+
+    /**
+     * Publish translations.
+     * @return void
+     */
+    private function publishTranslations(): void
+    {
+        $this->publishes([
+            $this->packagePath('resources/lang') => resource_path('lang/vendor/detail_view'),
+        ], 'lang');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | OTHER SETTINGS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @param $path
+     * @return string
+     */
+    private function packagePath($path): string
+    {
+        return __DIR__ . "/../" . $path;
+    }
+}
