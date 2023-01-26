@@ -24,7 +24,7 @@ This package is to displaying the model data in a Detail table.
 
 Run the composer command:
 
-`composer require itstructure/laravel-detail-view "~1.0.2"`
+`composer require itstructure/laravel-detail-view "~1.0.3"`
 
 ### If you are testing this package from a local server directory
 
@@ -303,6 +303,6 @@ $detailData = [
 
 ## License
 
-Copyright © 2021-2022 Andrey Girnik girnikandrey@gmail.com.
+Copyright © 2021-2023 Andrey Girnik girnikandrey@gmail.com.
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT). See LICENSE.txt for details.
