@@ -14,7 +14,7 @@ This package is to displaying the model data in a Detail table.
 ![Detail view appearance](https://github.com/itstructure/laravel-detail-view/blob/main/laravel_detail_view_appearance_en.png)
 
 ## Requirements
-- laravel 5.5+ | 6+ | 7+ | 8+ | 9+ | 10+
+- laravel 5.5+ | 6+ | 7+ | 8+ | 9+ | 10+ | 11+
 - php >= 7.1
 - composer
 
@@ -24,7 +24,7 @@ This package is to displaying the model data in a Detail table.
 
 Run the composer command:
 
-`composer require itstructure/laravel-detail-view "~1.0.4"`
+`composer require itstructure/laravel-detail-view "~1.0.5"`
 
 ### If you are testing this package from a local server directory
 
@@ -49,14 +49,6 @@ Here,
 Then run command:
 
 `composer require itstructure/laravel-detail-view:dev-main --prefer-source`
-
-### Registration
-
-Register service provider in **config/app.php**
-
-```php
-Itstructure\DetailView\DetailViewServiceProvider::class,       
-```
 
 ### Publish files (Not necessary)
 
@@ -303,6 +295,6 @@ $detailData = [
 
 ## License
 
-Copyright © 2021-2023 Andrey Girnik girnikandrey@gmail.com.
+Copyright © 2021-2024 Andrey Girnik girnikandrey@gmail.com.
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT). See LICENSE.txt for details.
